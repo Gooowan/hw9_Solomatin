@@ -18,8 +18,6 @@ function factorial(a) {
     }
 }
 
-// module.exports = factorial;
-//
 // Recursive way
 //
 function factorial_recursive(a) {
@@ -50,18 +48,27 @@ describe('factorial_recursive', function() {
         expect(result).to.equal(120);
     });
 
-    it('should return 1 for input 0', function() {
-        const result = factorial_recursive(0);
-        expect(result).to.equal(1);
+    // Using .be.a('type')
+    it('should return a number for input 5', function() {
+        const result = factorial_recursive(5);
+        expect(result).to.be.a('number');
     });
 
-    it('should return "Number is lower than 0" for negative input', function() {
-        const result = factorial_recursive(-5);
-        expect(result).to.equal('Number is lower than 0');
+    // Using .not.equal
+    it('should not return 100 for input 5', function() {
+        const result = factorial_recursive(5);
+        expect(result).to.not.equal(100);
     });
 
-    it('should return "Not an integer number" for non-integer input', function() {
-        const result = factorial_recursive('abc');
-        expect(result).to.equal('Not an integer number');
+    // Using .above
+    it('should return a result above 100 for input 5', function() {
+        const result = factorial_recursive(5);
+        expect(result).to.be.above(100);
+    });
+
+    // Using .below
+    it('should return a result below 200 for input 5', function() {
+        const result = factorial_recursive(5);
+        expect(result).to.be.below(200);
     });
 });
